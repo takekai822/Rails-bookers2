@@ -7,6 +7,11 @@ class BooksController < ApplicationController
     @book_new = Book.new
     @user = current_user
     @book_comment = BookComment.new
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
+      if @book.user != current_user
+        current_user.view_counts.create(book_id: @book.id)
+      end
+    end
   end
 
   def index

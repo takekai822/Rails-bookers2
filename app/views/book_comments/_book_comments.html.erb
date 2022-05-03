@@ -2,19 +2,17 @@
   <tr>
     <td>
       <%= link_to user_path(book_comment.user) do %>
-        <%= image_tag book_comment.user.get_profile_image, size:'100x100' %><br>
+        <%= image_tag book_comment.user.get_profile_image, size: "80x80" %><br>
         <%= book_comment.user.name %>
       <% end %>
     </td>
-    <td class="text-break">
+    <td>
       <%= book_comment.comment %>
     </td>
     <% if book_comment.user == current_user %>
       <td>
-        <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+        <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "btn btn-sm btn-danger", remote: true %>
       </td>
-    <% else %>
-      <td></td>
     <% end %>
   </tr>
 <% end %>
