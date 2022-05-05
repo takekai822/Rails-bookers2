@@ -9,7 +9,7 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
-      <h2>投稿数の前日比・前週比</h2>
+      <h3>投稿数の前日比・前週比</h3>
       <div class = "table_width">
         <table class="table table-bordered">
           <thead>
@@ -59,7 +59,7 @@
         </table>
       </div>
       <div class="table_width">
-        <h2>7日分の投稿数</h2>
+        <h3>7日分の投稿数</h3>
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -130,7 +130,7 @@
           });
         });
       </script>
-      <%= render 'daily_posts_form', user: @user %>
+      <%= render 'daily_posts_form', user: @user, books: @books %>
       </div>
     </div>
   </div>

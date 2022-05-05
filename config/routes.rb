@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     get "followers" => "relationships#followers", as: "followers"
     get "daily_posts" => "users#daily_posts"
   end
+  
+  resources :groups, except: [:destroy]
+  
   get "search" => "searches#search"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :chats, only: [:show, :create]
