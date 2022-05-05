@@ -17,7 +17,10 @@ Rails.application.routes.draw do
     get "daily_posts" => "users#daily_posts"
   end
   
-  resources :groups, except: [:destroy]
+  resources :groups do
+    get "join" => "groups#join"
+    delete "all_destroy" => "groups#all_destroy"
+  end
   
   get "search" => "searches#search"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

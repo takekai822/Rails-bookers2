@@ -24,7 +24,7 @@
               </tr>
             <% end %>
           </tbody>
-        <% else %>
+        <% elsif @range == "Book" %>
           <h2>Books search for"<%= params[:word] %>"</h2>
           <thead>
             <tr>
@@ -45,6 +45,30 @@
                   <% end %>
                 </td>
                 <td><%= book.body %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% else %>
+          <h2>Groups search for"<%= params[:word] %>"</h2>
+          <thead>
+            <tr>
+              <th></th>
+              <th>name</th>
+              <th>introduction</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @groups.each do |group| %>
+              <tr>
+                <td>
+                  <%= image_tag group.get_image, size: "50x50" %>
+                </td>
+                <td>
+                  <%= link_to group_path(group) do %>
+                    <%= group.name %>
+                  <% end %>
+                </td>
+                <td><%= group.introduction %></td>
               </tr>
             <% end %>
           </tbody>
