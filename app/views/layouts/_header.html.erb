@@ -50,6 +50,14 @@
             <% end %>
           </li>
         <% end %>
+        <% if user_signed_in? %>
+          <%= form_with url: search_path, method: :get, local: true do |f| %>
+            <%= f.text_field :word, placeholder: "category search" %>
+            <%= f.hidden_field :range, :value => "category"  %>
+            <%= f.hidden_field :search, :value => "perfect" %>
+            <%= f.submit "検索" %>
+          <% end %>
+        <% end %>
         </ul>
       </div>
     </div>

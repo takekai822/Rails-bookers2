@@ -35,7 +35,9 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    category_list = params[:book][:category_name].split(",")
     if @book.save
+      @book.save_categories(category_list)
       redirect_to book_path(@book), notice: "You have created book successfully."
     else
       @user = current_user

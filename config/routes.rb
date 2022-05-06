@@ -16,13 +16,14 @@ Rails.application.routes.draw do
     get "followers" => "relationships#followers", as: "followers"
     get "daily_posts" => "users#daily_posts"
   end
-  
+
   resources :groups do
     get "join" => "groups#join"
     delete "all_destroy" => "groups#all_destroy"
   end
-  
+
   get "search" => "searches#search"
+  get "category_search" => "category_searches#search"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :chats, only: [:show, :create]
 

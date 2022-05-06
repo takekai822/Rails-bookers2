@@ -5,6 +5,8 @@ class Book < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
   has_many :view_counts, dependent: :destroy
+  has_many :book_categories, dependent: :destroy
+  has_many :categories, through: :book_categories
   
   scope :created_today, -> { where(created_at: Time.zone.now.all_day) } 
   scope :created_yesterday, -> { where(created_at: 1.day.ago.all_day) }
@@ -39,4 +41,20 @@ class Book < ApplicationRecord
       @book = Book.all
     end
   end
+  
+  def save_categories(tags)
+    current_tags = self.categories.pluck(:name) unless self.categories.nil?
+    old_tags = current_tags - tags
+    new_tags = tags - current_tags
+    
+    old_tags.each do |old_name|
+      self.categories.delete Category.find_by(name: old_name)
+    end
+    
+    new_tags.each do |new_name|
+      book_category = Category.find_or_create_by(name: new_name)
+      self.categories << book_category
+    end
+  end
+
 end
